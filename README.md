@@ -10,7 +10,7 @@ Creates a minimap image from the server's map file. Unless the map format has be
 
 Expects map.dat in the same directory. Looks for image files in /png, /bmp, with a preference for png. 
 
-Images can be ignored or have their colours overridden.
+Can define images to be ignored or have their colours overridden.
 
 ## Future
 
