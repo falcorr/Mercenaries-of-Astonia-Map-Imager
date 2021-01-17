@@ -3,7 +3,7 @@ Creates a minimap image from the server's map file. Unless the map format has be
 
 ## Requires
 - Python 3.6+ (tested with 3.8.5)
-- Pillow
+- [Pillow](https://pillow.readthedocs.io/)
 
 ## Usage
 `python MoA-map-imager.py [filename.dat]`
