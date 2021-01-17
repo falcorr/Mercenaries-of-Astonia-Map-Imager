@@ -1,6 +1,8 @@
 # Mercenaries of Astonia Map Imager
 Creates a minimap image from the server's map file. Unless the map format has been heavily altered, will work with maps from post-v2 servers. 
 
+![Mercenaries of Astonia](https://i.imgur.com/IVrBzUb.png)
+
 ## Requires
 - Python 3.6+ (tested with 3.8.5)
 - [Pillow](https://pillow.readthedocs.io/)
