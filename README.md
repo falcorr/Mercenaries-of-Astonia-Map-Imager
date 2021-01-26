@@ -12,7 +12,7 @@ Can toggle layers, ignore and override images, retrieve location info, and searc
 ## Usage
 `python MoA-map-imager.py [-map map.dat] [-items item.dat] [-location x,y]`
 
-No arguments for console. Use arguments for automation. Supplying map and / or items arguments will save `map.png`.
+No arguments for console. Use arguments for automation. Supplying map and / or items arguments will save `map.png`
 
 Expects data files in the same directory. Looks for image files in /png, /bmp, with a preference for png.
 
@@ -59,7 +59,7 @@ Expects data files in the same directory. Looks for image files in /png, /bmp, w
 - descriptions of background and foreground images
 - item whitelist
 - define overrides for specific regions
-- define length between tile, item, and character entries in data files (for non-v2 formats)
+- define length between tile, item, and character entries and various offsets in data files (for non-v2 formats)
 - extended search
 - cursor with coordinates over map display
 - filter tiles and items by flags
