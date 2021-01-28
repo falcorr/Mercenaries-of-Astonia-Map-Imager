@@ -366,8 +366,7 @@ def getImageColour(hex):
 def getLocation(x, y):
     if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
         print("Coordinates outside map bounds")
-        if console is False: 
-            sys.exit()
+        return False
     location = ""
     for h in mapHexData[(y + x * mapWidth) * tileLength:(y + x * mapWidth) * tileLength + tileLength]:
         location += str(h)
@@ -413,7 +412,7 @@ def getLocation(x, y):
     
     return True
 
-print("\nMercenaries of Astonia map imager v2")
+print("\nMercenaries of Astonia map imager v2.1")
 print("by Makadon\n")
 
 loadSettings()
@@ -722,14 +721,24 @@ if len(sys.argv) == 1:
                             surfaceAltered = True
                             saveSettings()
                         else:
-                            print("Image number already ignored")
+                            index = len(imageColourIgnore) - 1
+                            for item in reversed(imageColourIgnore):
+                                if item == imageNumberString[0]:
+                                    del imageColourIgnore[index]
+                                index -= 1
+                            surfaceAltered = True
+                            saveSettings()
+                            print("{0} no longer ignored".format(imageNumberString[0]))
                         continue
                         
                 print("Image number must be between 1-65535")
                 continue
             
+            sortedIgnores = []
             for item in imageColourIgnore:
-                print(item)
+                sortedIgnores.append(item.zfill(5))
+            for item in sorted(sortedIgnores):
+                print(item.lstrip('0'))
             
         elif commandRegex[1] == "override" or commandRegex[1] == "overide" or commandRegex[1] == "o":
             # Override image number's colour
@@ -743,9 +752,11 @@ if len(sys.argv) == 1:
                             RGBoffset = 7
                             RGB = {}
                             for index in range(3):
-                                RGBNumberString = re.search("^\d{1,3}$", commandRegex[RGBoffset].lstrip('0'))
-                                if RGBNumberString:   
-                                    RGBNumber = int(RGBNumberString[0]) 
+                                RGBNumberString = re.search("^\d{1,3}$", commandRegex[RGBoffset])[0]
+                                if RGBNumberString:
+                                    if RGBNumberString != "0":
+                                        RGBNumberString = RGBNumberString.lstrip('0')
+                                    RGBNumber = int(RGBNumberString) 
                                     if RGBNumber > -1 and RGBNumber < 256:
                                         RGB[str(RGBoffset)] = RGBNumber
                                     else:
@@ -775,8 +786,11 @@ if len(sys.argv) == 1:
                         print("Image number must be between 1-65535")
                 
             else:
+                sortedOverrides = {}
                 for key, value in imageColourOverrides.items():
-                    print("{0}: {1},{2},{3}".format(key, value[0], value[1], value[2]))
+                    sortedOverrides[key.zfill(5)] = value
+                for key, value in sorted(sortedOverrides.items()):
+                    print("{0}: {1},{2},{3}".format(key.lstrip('0'), value[0], value[1], value[2]))
         
         elif commandRegex[1] == "missing" or commandRegex[1] == "missingcolour" or commandRegex[1] == "missingcolor":
             # Set missing image file colour
