@@ -1,5 +1,5 @@
 # Mercenaries of Astonia Map Imager
-Creates an image of the entire minimap from the server's map and items files. Unless the map format has been heavily altered, will work with maps from post-v2 servers. 
+Creates an image of the entire minimap from the server's map and items files. Unless the map format has been heavily altered, will work with maps from post-v2 servers (e.g. Aranock).
 
 Can toggle layers, ignore and override images, retrieve location info, and search item names and descriptions by word.
 
